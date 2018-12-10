@@ -39,6 +39,10 @@ def load_data():
     print(t.document_count)
     print(t.word_index)
     print(t.word_docs)
+
+    encoded_docs = t.texts_to_matrix(tweets, mode='count')
+    print(encoded_docs)
+
     return [(convert(train_tweets, object), convert(train_labels, tf.int64))
         ,(convert(test_tweets, object), convert(test_label, tf.int64))]
 
