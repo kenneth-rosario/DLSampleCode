@@ -15,7 +15,10 @@ def load_data():
 
     print(train_tweets)
     print(train_labels)
-
+    print("\n \n \n---------------------------------------------------------------")
+    print("---------------------------------------------------------------")
+    print("---------------------------------------------------------------")
+    print("---------------------------------------------------------------")
     print("Succesfully Loaded Data into training dataset and testing")
     return [(train_tweets, train_labels), (test_tweets, test_label)]
 
