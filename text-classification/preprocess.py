@@ -13,6 +13,9 @@ def load_data():
     test_tweets = tweets[11001:]
     test_label = labels[11001:]
 
+    print(train_tweets)
+    print(train_labels)
+
     return [(train_tweets, train_labels), (test_tweets, test_label)]
 
 
