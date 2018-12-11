@@ -13,10 +13,6 @@ def convert(arg, dtype):
     )
     return arg
 
-def pad_str_280(arg):
-    difference = 280 - len(arg)
-    return "{:<"+str(difference)+"}".format(arg)
-
 
 def load_data():
     colnames = ["tweets", "label"]
@@ -31,20 +27,14 @@ def load_data():
     test_tweets = tweets[11001:]
     test_label = labels[11001:]
 
-    train_tweets = [text_to_word_sequence(x) for x in train_tweets]
-    test_tweets = [text_to_word_sequence(x) for x in test_tweets]
-    t = Tokenizer(tweets)
-    t.fit_on_texts(tweets)
-    print(t.word_counts)
-    print(t.document_count)
-    print(t.word_index)
-    print(t.word_docs)
+    t = Tokenizer()
+    t.fit_on_texts(train_tweets)
+    train_tweets = t.texts_to_matrix(tweets, mode='count')
+    t.fit_on_texts(test_tweets)
+    test_tweets = t.texts_to_matrix(tweets, mode='count')
 
-    encoded_docs = t.texts_to_matrix(tweets, mode='count')
-    print(encoded_docs)
-
-    return [(convert(train_tweets, object), convert(train_labels, tf.int64))
-        ,(convert(test_tweets, object), convert(test_label, tf.int64))]
+    return [(convert(train_tweets, tf.float32), convert(train_labels, tf.int64))
+        ,(convert(test_tweets, tf.float32), convert(test_label, tf.int64))]
 
 if __name__ == '__main__':
     load_data()

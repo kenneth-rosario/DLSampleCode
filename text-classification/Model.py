@@ -12,7 +12,7 @@ test_labels = []
 
 
 [(train_tweets, train_labels), (test_tweets, test_labels)] = load_data()
-print("Training entries: {}, labels: {}".format(len(train_tweets), len(train_labels)))
+
 
 # model = Sequential()
 #
