@@ -1,6 +1,7 @@
 import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
+
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.text import text_to_word_sequence
 import numpy as np
@@ -33,8 +34,10 @@ def load_data():
     t.fit_on_texts(test_tweets)
     test_tweets = t.texts_to_matrix(tweets, mode='count')
 
-    return [(convert(train_tweets, tf.float32), convert(train_labels, tf.int64))
-        ,(convert(test_tweets, tf.float32), convert(test_label, tf.int64))]
+    train_tweets =  keras.preprocessing.sequence.pad_sequences(train_tweets, value= 0, padding='post', maxlen=280)
+    test_tweets = keras.preprocessing.sequence.pad_sequences(test_tweets, value=0, padding='post', maxlen=280)
+
+    return [(train_tweets, train_labels),(test_tweets, test_label)]
 
 if __name__ == '__main__':
     load_data()
