@@ -32,6 +32,7 @@ number_of_classes = 10
 train_images = train_images/255.0
 test_images = test_images/255.0
 print(train_images[0].shape)
+print(train_images.shape)
 
 for i in range(25):
     plt.subplot(5, 5,i+1)
@@ -46,15 +47,15 @@ plt.show()
 train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
 test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
 
-model = Sequential()
-model.add(Conv2D(filters=64, kernel_size=2, strides=1, padding="same", activation="relu"))
-model.add(Dense(512, activation="relu"))
-model.add(Dense(10, activation='softmax'))
-
-
-# Train
-model.compile(optimizer=tf.train.AdamOptimizer(),
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-
-model.fit(train_images,  train_labels, batch_size=64,  epochs=5)
+# model = Sequential()
+# model.add(Conv2D(filters=64, kernel_size=2, strides=1, padding="same", activation="relu"))
+# model.add(Dense(512, activation="relu"))
+# model.add(Dense(10, activation='softmax'))
+#
+#
+# # Train
+# model.compile(optimizer=tf.train.AdamOptimizer(),
+#               loss='sparse_categorical_crossentropy',
+#               metrics=['accuracy'])
+#
+# model.fit(train_images,  train_labels, batch_size=64,  epochs=5)
